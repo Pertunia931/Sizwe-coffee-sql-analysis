@@ -154,10 +154,12 @@ Three things to understand about these links:
 
 ### Task 6: Sales reps against target
 
-- The 15 highest-ranked reps all beat their monthly target, from **116.1%** (Bongani Mahlangu, Eastern Cape) up to **250.3%** (Karabo van Wyk, Gauteng South, who averaged R2.25m a month against a R900k target).
+- **16 of the 18 reps** beat their monthly target, from **107.8%** (Anele Botha, Northern Region) up to **250.3%** (Karabo van Wyk, Gauteng South, who averaged R2.25m a month against a R900k target).
 - **Kagiso Mkhize** (Gauteng North) is second at 249.8% and the biggest earner in rand, averaging R5.0m a month against a R2.0m target. Kagiso also owns the Halvane Retail Group account (R38.4m in FY2025, about R3.2m a month), which would make up roughly two-thirds of that average if those orders were placed under the same rep.
 - Percentage of target depends heavily on the target itself: Karabo Zwane averaged more (R2.51m) than Anele Zwane (R1.85m) but scores lower (125.6% against 205.2%), because the target is R2.0m against R900k.
-
+- Two reps fell short: **Sipho Steyn** (KwaZulu-Natal) at **98.0%**, narrowly below a R2.0m target (R1.96m a month), and **Johan Naidoo** (Gauteng North) at **77.6%**, the weakest result, at R1.16m a month against a R1.5m target.
+- Every rep generated revenue, so none appears with zero.
+- Verification: the result has 18 rows, the same as the 18 reps in the `reps` table, so no rep was dropped.
 
 
 ### Task 7: The shape of the year
