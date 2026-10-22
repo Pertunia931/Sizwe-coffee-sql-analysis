@@ -86,29 +86,11 @@ Three things to understand about these links:
 
 **Tool used:** a Databricks SQL notebook.
 
-## 4. How to run
+1. Load the Sizwe Coffee dataset into Databricks. The tables carry a `sizwe_` prefix (for example `sizwe_sales_lines`).
+2. Open a new Databricks notebook and copy the queries from `queries.sql` into it, one query per SQL cell.
+3. Run the queries one at a time, in order from Task 1 to Task 8. Each query is preceded by a `-- Task N` comment, and each runs on its own.
+4. Compare your results with the figures in the Key insights section. For example, Task 1 should show 8.8% growth for both channels, and Task 4 should have Halvane Retail Group first at about R38.4m.
 
-**Tool used:** a Databricks notebook (Spark SQL).
-
-1. I loaded the Sizwe Coffee dataset into Databricks and ran the queries from a Databricks notebook. The tables carry a `sizwe_` prefix (for example `sizwe_sales_lines`).
-2. To reproduce the results, load the same tables into Databricks, open `queries.sql`, and run the queries one at a time, in order. Each query is preceded by a `-- Task N` comment.
-3. If your tables have no `sizwe_` prefix, find and replace `sizwe_` with nothing in `queries.sql`.
-
-
-2. Confirm the column names match (run `DESCRIBE <table>`). The names relied on are:
-   - `customers`: `customer_id`, `trading_name`, `channel`, `segment`, `province`, `rep_id`
-   - `products`: `sku`, `product_line`
-   - `sales_orders`: `order_id`, `customer_id`, `order_date`, `channel`, `rep_id`
-   - `sales_lines`: `order_id`, `sku`, `line_revenue`, `cogs`
-   - `ar_ledger`: `customer_id`, `invoice_amount`, `due_date`, `amount_settled`, `settlement_date`
-   - `reps`: `rep_id`, `rep_name`, `territory`, `target_monthly`
-   - `trade_promotions`: `customer_id`
-3. Open `queries.sql` and run the queries one at a time, in order. Each is preceded by a `-- Task N` comment and, where the brief asks for a written answer, followed by an `-- Answer:` comment.
-4. Dialect notes if you are not on Databricks:
-   - `DATEDIFF(end, start)` is the Spark form. In SQL Server use `DATEDIFF(day, start, end)`.
-   - `LIMIT n` becomes `TOP n` in SQL Server.
-   - `IFNULL` becomes `ISNULL` in SQL Server (or use `COALESCE` anywhere).
-   - `DATE_TRUNC('month', d)` works in Spark and PostgreSQL. In SQL Server use `DATEFROMPARTS(YEAR(d), MONTH(d), 1)`.
 
 ## 5. Key insights
 
@@ -119,8 +101,8 @@ Three things to understand about these links:
 | Subscription | R132.8m | R144.6m | 8.8% |
 | Wholesale | R308.2m | R335.4m | 8.8% |
 
-- Both channels grew by the same **8.8%**, so the split stays at about 70% Wholesale and 30% Subscription in both years. Channel mix therefore does not explain the margin decline in Task 8.
-- Sanity check: the two channels add up to R441.0m (FY2024) and R480.0m (FY2025), matching the brief.
+- Both channels grew by the same **8.8%**, so the split stays at about 70% Wholesale and 30% Subscription in both years. 
+- Verification: the two channels add up to R441.0m (FY2024) and R480.0m (FY2025), matching the brief.
 
 ### Task 2: Profit by product line
 
@@ -134,7 +116,7 @@ Three things to understand about these links:
 
 - House Blend earns the most profit (R107.1m) but is **not** the highest-margin line. Single Origin has the best margin (44.3%).
 - Bulk Commercial is the second-largest line by revenue (R271.8m) but earns only R54.1m of profit because its margin is just 19.9%, about half that of the other lines.
-- Sanity check: revenue across the five lines is about R921m, which matches R441m (FY2024) + R480m (FY2025).
+- Verification: revenue across the five lines is about R921m, which matches R441m (FY2024) + R480m (FY2025).
 
 ### Task 3: Collections
 
@@ -144,9 +126,9 @@ Three things to understand about these links:
 | Wholesale | 28,944 | 3,454 | 11.9% | +17.2 (late) | R87.85m |
 
 - Subscription customers pay about 26 days before the due date and almost nothing is outstanding.
-- Wholesale customers pay about 17 days late on average, about one invoice in eight is unpaid, and Wholesale holds roughly **99%** of all money owed.
+- Wholesale customers pay about 17 days late on average, about 12% of Wholesale invoices (3,454 of 28,944) are still unpaid, and Wholesale holds roughly 99% of all money owed.
 - The 17.2 days is probably understated because the average only includes settled invoices, and the 3,454 open ones are the slowest payers. **Wholesale is the first place to investigate.**
-- Sanity check: 19,200 + 28,944 = 48,144, matching the `ar_ledger` row count.
+- Sanity check: 19,200 + 28,944 = 48,144 invoices, matching the `ar_ledger` row count.
 
 ### Task 4: Ten accounts that matter most
 
@@ -176,7 +158,7 @@ Three things to understand about these links:
 - **Kagiso Mkhize** (Gauteng North) is second at 249.8% and the biggest earner in rand, averaging R5.0m a month against a R2.0m target. Kagiso also owns the Halvane Retail Group account (R38.4m in FY2025, about R3.2m a month), which would make up roughly two-thirds of that average if those orders were placed under the same rep.
 - Percentage of target depends heavily on the target itself: Karabo Zwane averaged more (R2.51m) than Anele Zwane (R1.85m) but scores lower (125.6% against 205.2%), because the target is R2.0m against R900k.
 
-> _Add from your result: rows 16 to 18 (the three lowest reps), including how many reps are below 100% of target and whether any generated no revenue. The query returns 18 reps and only the first 15 were visible._
+
 
 ### Task 7: The shape of the year
 
@@ -209,5 +191,5 @@ Three things to understand about these links:
 
 | File | Purpose |
 |---|---|
-| `queries.sql` | All eight queries in order, each preceded by its task number, with a written answer beneath where the brief asks for one |
-| `README.md` | This write-up |
+| [queries.sql](queries.sql) | All eight queries in order, each preceded by its task number, with a written answer beneath where the brief asks for one |
+| [README.md](README.md) | Project Documentation |
