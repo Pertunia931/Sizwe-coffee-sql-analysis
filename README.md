@@ -2,7 +2,7 @@
 
 Eight SQL analyses that answer the Financial Director's and National Sales Manager's questions ahead of Sizwe Coffee's FY2025 year-end review. The work was done in a Databricks notebook and exported to `queries.sql`.
 
-## 1. Project overview
+## :dart: 1. Project overview
 
 **The business.** Sizwe Coffee (Pty) Ltd is a coffee roastery and wholesale supplier based in Isando, Johannesburg, with a second distribution centre in Epping, Cape Town. It roasts green beans and sells to about 1,400 business customers - grocery chains, restaurant groups, independent cafés, hotels and offices. It does not own retail stores.
 
@@ -30,7 +30,7 @@ Eight SQL analyses that answer the Financial Director's and National Sales Manag
 | 7 | Bongani | Monthly revenue over two years: seasonality and the quietest month |
 | 8 | Both | Why did gross margin fall from 34.7% to 33.0% while revenue grew nearly 9%? |
 
-## 2. Dataset
+## :file_cabinet: 2. Dataset
 
 Nine tables were provided and eight are used here (`vendors` and `rep_visits` are not needed for these tasks). In my environment every table carries a `sizwe_` prefix (for example `sizwe_sales_lines`).
 
@@ -63,7 +63,7 @@ Three things to understand about these links:
 2. **The "and" in the join list is plain English, not an SQL keyword.** It means two different tables each point at the same target. `sales_orders.rep_id` and `customers.rep_id` both point at `reps`: the first is the rep who handled that specific order, the second is the rep assigned to the customer. I use the customer's rep when asking "who owns the account?" (Task 4) and the order's rep when asking "who made the sales?" (Task 6).
 3. **`channel` appears on both `customers` and `sales_orders`.** I use the order's channel when measuring sales (Task 1) and the customer's channel when classifying customers or invoices (Tasks 3 and 5).
 
-## 3. Skills demonstrated
+## :wrench: 3. Skills demonstrated
 
 | SQL technique | Where it is used |
 |---|---|
@@ -82,7 +82,7 @@ Three things to understand about these links:
 | `CASE` expressions to label financial years | Tasks 1, 8 |
 | `ORDER BY` and `LIMIT` for top-N lists | Tasks 4, 5 |
 
-## 4. How to run
+## :arrow_forward: 4. How to run
 
 **Tool used:** a Databricks SQL notebook.
 
@@ -92,7 +92,7 @@ Three things to understand about these links:
 4. Compare your results with the figures in the Key insights section. For example, Task 1 should show 8.8% growth for both channels, and Task 4 should have Halvane Retail Group first at about R38.4m.
 
 
-## 5. Key insights
+## :bar_chart: 5. Key insights
 
 ### Task 1: Channel performance
 
@@ -175,7 +175,7 @@ Three things to understand about these links:
 - Each line held its own margin almost exactly, so the blended margin fell because the business tilted toward its least profitable line. Revenue grew about 9%, but it was low-quality growth.
 - Consistency check: R110.3m + R161.5m = R271.8m, which matches Bulk Commercial's total revenue in Task 2.
 
-## 6. Assumptions and design decisions
+## :memo: 6. Assumptions and design decisions
 
 - **Financial years.** FY2024 is `order_date < '2024-07-01'` and FY2025 is `order_date >= '2024-07-01'`, so orders carrying a time of day on 30 June are not dropped. The year is assigned by **order date**, as the brief specifies.
 - **Settled invoice.** An invoice counts as settled when it has a `settlement_date`; otherwise it is open.
@@ -187,7 +187,7 @@ Three things to understand about these links:
 - **Task 7 rolling average.** A three-row window ordered by month, so the first two months are averaged over fewer than three months.
 - **Task 8 margin.** `(revenue - cogs) / revenue`, computed per product line per financial year, and the share of revenue is each line's revenue divided by that year's total across all lines.
 
-## 7. Repository contents
+## :file_folder: 7. Repository contents
 
 | File | Purpose |
 |---|---|
