@@ -1,10 +1,10 @@
-# Sizwe Coffee: Year-End Review in SQL
+# Sizwe Coffee: FY2025 Year-End Review (SQL Analysis)
 
-Eight SQL analyses that answer the Financial Director's and National Sales Manager's questions ahead of Sizwe Coffee's FY2025 year-end review. The work was done in a Databricks notebook (Spark SQL) and exported to `queries.sql`.
+Eight SQL analyses that answer the Financial Director's and National Sales Manager's questions ahead of Sizwe Coffee's FY2025 year-end review. The work was done in a Databricks notebook and exported to `queries.sql`.
 
 ## 1. Project overview
 
-**The business.** Sizwe Coffee (Pty) Ltd is a coffee roastery and wholesale supplier based in Isando, Johannesburg, with a second distribution centre in Epping, Cape Town. It roasts green beans and sells to about 1,400 business customers (grocery chains, restaurant groups, independent cafés, hotels and offices). It does not own retail stores.
+**The business.** Sizwe Coffee (Pty) Ltd is a coffee roastery and wholesale supplier based in Isando, Johannesburg, with a second distribution centre in Epping, Cape Town. It roasts green beans and sells to about 1,400 business customers - grocery chains, restaurant groups, independent cafés, hotels and offices. It does not own retail stores.
 
 | Item | Value |
 |---|---|
@@ -15,7 +15,7 @@ Eight SQL analyses that answer the Financial Director's and National Sales Manag
 | Financial year | 1 July to 30 June |
 | Period in the data | 1 July 2023 to 30 June 2025 |
 
-**The situation.** I am a junior data analyst who has just joined. The financial year ended on 30 June 2025 and the year-end review is two weeks away. Nomsa Dlamini (Financial Director) and Bongani Twala (National Sales Manager) each asked for a list of things to understand before that meeting.
+**The situation.** I am a junior data analyst who has just joined. The financial year ended on 30 June 2025 and the year-end review is two weeks away. **Nomsa Dlamini**, Financial Director and **Bongani Twala** National Sales Manager each asked for a list of things to understand before that meeting.
 
 **The eight questions**
 
@@ -84,9 +84,17 @@ Three things to understand about these links:
 
 ## 4. How to run
 
-**Tool used:** a Databricks SQL notebook (Spark SQL dialect).
+**Tool used:** a Databricks SQL notebook.
 
-1. Load the Sizwe Coffee tables into your database or notebook. This project assumes they are named with a `sizwe_` prefix (`sizwe_customers`, `sizwe_products`, `sizwe_sales_orders`, `sizwe_sales_lines`, `sizwe_ar_ledger`, `sizwe_reps`, `sizwe_trade_promotions`). If yours have no prefix, find and replace `sizwe_` with nothing.
+## 4. How to run
+
+**Tool used:** a Databricks notebook (Spark SQL).
+
+1. I loaded the Sizwe Coffee dataset into Databricks and ran the queries from a Databricks notebook. The tables carry a `sizwe_` prefix (for example `sizwe_sales_lines`).
+2. To reproduce the results, load the same tables into Databricks, open `queries.sql`, and run the queries one at a time, in order. Each query is preceded by a `-- Task N` comment.
+3. If your tables have no `sizwe_` prefix, find and replace `sizwe_` with nothing in `queries.sql`.
+
+
 2. Confirm the column names match (run `DESCRIBE <table>`). The names relied on are:
    - `customers`: `customer_id`, `trading_name`, `channel`, `segment`, `province`, `rep_id`
    - `products`: `sku`, `product_line`
